@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: turnstile
+  datasource:
+    url: jdbc:postgresql://localhost:5432/turnstile
+    username: turnstile
+    password: secret
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+app:
+  scanner:
+    host: 127.0.0.1     # placeholder: real scanner IP
+    port: 9000          # placeholder: scanner TCP port
+    heartbeatSeconds: 10
+    reconnectSeconds: 5
+  eventbrite:
+    apiKey: ${EVENTBRITE_API_KEY}    # Set in environment variables
+    eventId: ${EVENTBRITE_EVENT_ID}  # Set in environment variables
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
